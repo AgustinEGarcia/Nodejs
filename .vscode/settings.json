@@ -1,0 +1,7 @@
+{
+    "terminal.integrated.fontSize": 20,
+    "editor.fontSize": 20,
+    "scm.inputFontSize": 20,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.iconTheme": "vscode-icons"
+}
