@@ -19,6 +19,12 @@ const morgan = require('morgan');
 
 const app = express();
 
+// settings -> permiten agregar variables
+
+//con app.set agregamos una nueva config
+app.set('appName', 'Mi primer servidor');
+
+
 //middlewares
 
 app.use(morgan('short'));
@@ -56,4 +62,5 @@ app.get('*' ,(req, res) => {
 
 app.listen(3000, () => {
     console.log('Server on port 3000');
+    console.log('Nombre de la app: ', app.get('appName'));
 });
