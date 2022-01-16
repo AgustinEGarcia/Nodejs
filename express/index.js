@@ -19,10 +19,14 @@ const morgan = require('morgan');
 
 const app = express();
 
-// settings -> permiten agregar variables
+// settings -> permiten agregar variables, pero generalmente se las utiliza para 
+//establecer las configuraciones de los motores de plantillas
 
 //con app.set agregamos una nueva config
 app.set('appName', 'Mi primer servidor');
+app.set('views', __dirname + '/views'); //__dirname es una variable global que te
+//devuelve la ruta actual del archivo de donde lo llamas, en este caso index.js
+app.set('view engine', 'ejs'); // configurando motor de plantillas ejs
 
 
 //middlewares
@@ -45,20 +49,8 @@ app.use((req, res, next) => {
 
 
 //rutas
-
-app.get('/', (req, res) => {
-    res.send('Hello Word');
-});
-
-//asi se van agregando las distintas rutas de las paginas
-app.get('/login', (req, res) => {
-    res.send('Esta es la página de login');
-});
-
-//en caso que que una determinada ruta no exista, por defecto devuelve esto
-app.get('*' ,(req, res) => {
-    res.end('Archivo no encontrado');
-});
+const routes = require('./routes.js');
+app.use(routes);
 
 app.listen(3000, () => {
     console.log('Server on port 3000');
