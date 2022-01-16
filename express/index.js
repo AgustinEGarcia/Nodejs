@@ -46,11 +46,17 @@ app.use((req, res, next) => {
     next();
 });
 */
-
-
 //rutas
 const routes = require('./routes.js');
+const routesApi = require('./routes-api.js');
 app.use(routes);
+app.use(routesApi);
+
+
+//en caso que que una determinada ruta no exista, por defecto devuelve esto
+app.get('*' ,(req, res) => {
+    res.end('Archivo no encontrado');
+});
 
 app.listen(3000, () => {
     console.log('Server on port 3000');
