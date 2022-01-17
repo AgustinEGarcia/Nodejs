@@ -5,14 +5,20 @@ const router = express.Router();
 
 //rutas
 
+/*
 router.get('/', (req, res) => {
     res.render('index.ejs');
 });
-
+*/
 router.use(express.json());
 
-router.all('/user', (req, res) => {
-    
+//.all() es una funcion que express, que sirve para que se haga algo antes de que
+//se llegue a las rutas que defino en el método
+
+router.all('/user', (req, res, next) => {
+    console.log('Por aquí pasó');
+    res.send('finish');
+    next();
 });
 
 router.get('/user', (req, res) => {

@@ -33,6 +33,8 @@ app.set('view engine', 'ejs'); // configurando motor de plantillas ejs
 
 app.use(morgan('short'));
 
+
+
 /*
 //este middleware muestra por consola la url que se visita
 app.use((req, res, next) => {
@@ -52,6 +54,7 @@ const routesApi = require('./routes-api.js');
 app.use(routes);
 app.use(routesApi);
 
+app.use(express.static('static'));
 
 //en caso que que una determinada ruta no exista, por defecto devuelve esto
 app.get('*' ,(req, res) => {
