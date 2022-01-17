@@ -1,6 +1,6 @@
+const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
-const app = express();
 
 
 //rutas
@@ -9,7 +9,11 @@ router.get('/', (req, res) => {
     res.render('index.ejs');
 });
 
-app.use(express.json());
+router.use(express.json());
+
+router.all('/user', (req, res) => {
+    
+});
 
 router.get('/user', (req, res) => {
     res.json({
@@ -23,17 +27,19 @@ router.get('/login', (req, res) => {
     res.render('login.ejs');
 });
 
-router.post('/user', (req, res) => {
+router.post('/user/:id', (req, res) => { //poner los : en la ruta significa que voy a recibir un parametro
     console.log(req.body);
+    console.log(req.params);
     res.send('POST REQUEST RECEIVED');
 });
 
-router.put('/contact', (req, res) => {
-    res.send('PUT REQUEST RECEIVED');
+router.put('/user/:id', (req, res) => {
+    console.log(req.body);
+    res.send(`User ${req.params.id} updated`);
 });
 
-router.delete('/test', (req, res) => {
-    res.send('DELETE REQUEST RECEIVED');
+router.delete('/user/:userId', (req, res) => {
+    res.send(`User ${req.params.userId} deleted`);
 });
 
 module.exports = router;
